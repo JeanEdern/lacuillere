@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= form_for [@restaurant, @review] do |f| %>
+      <div class="form-group">
+        <%= f.label "Content of the review" %>
+        <%= f.text_area :content, class:"form-control", placeholder:"Ajoutez votre commentaire" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "rating" %>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-star"></i></div>
+          <%= f.text_field :rating, class:"form-control", placeholder:"Une note entre 0 et 5"%>
+        </div>
+      </div>
+        <%= f.submit "add a review", class:"btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <%= link_to "Back to the Index", restaurants_path, {class: "btn btn-primary"} %>
+</div>
+

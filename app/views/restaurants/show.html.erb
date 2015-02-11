@@ -1,0 +1,45 @@
+
+<% content_for(:title) do %>
+  <%= @restaurant.name %> | La Cuillère
+<% end %>
+
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card bg-white">
+      <h2>Details for Restaurant : "<%= @restaurant.name %>"</h2>
+      <ul class="list-unstyled">
+        <li>Address: <%= @restaurant.address %></li>
+        <li>Phone Number: <%= @restaurant.phone_number %></li>
+        <li>Category: <%= @restaurant.category %></li>
+        <li>Number of reviews: <%= @restaurant.reviews.length %></li>
+        <li>Average rating: <%= @restaurant.reviews.average(:rating).round(1) %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<p><%= link_to "back to the index", restaurants_path, {class: "btn btn-primary"}%></p>
+
+<h3>Here is a list of all reviews</h3>
+
+<% @reviews.each do |review| %>
+  <blockquote>
+    <p><%= review.content %></p>
+    <footer>Rating:
+      <% review.rating.times do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+      <% (5 - review.rating).times do %>
+        <i class="fa fa-star-o"></i>
+      <% end %>
+    </footer>
+  </blockquote>
+<% end %>
+
+
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant), {class: "btn btn-primary"} %>
